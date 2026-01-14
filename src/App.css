@@ -3,13 +3,32 @@ header {
 }
 
 header > h1 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #F9F4DA;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #f9f4da;
 }
 
 header > p {
-    font-size: 0.875rem;
-    max-width: 350px;
-    color: #8E8E8E;
+  font-size: 0.875rem;
+  max-width: 350px;
+  color: #8e8e8e;
+}
+
+section.status-section {
+  background-color: #10a95b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f9f4da;
+  border-radius: 4px;
+  margin-block: 30px;
+}
+
+section.status-section > p {
+  margin: 5px;
+}
+
+section.status-section > h2 {
+  font-size: 1.25rem;
+  margin: 5px;
 }
