@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { languages } from "./data/languages";
 import { getFarewellText } from "./data/farewell-texts";
+import { words } from "./data/words";
 import "./app.css";
 import Header from "./components/Header";
 import LanguageChip from "./components/LanguageChip";
@@ -12,7 +13,7 @@ export default function App() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   // State Variables
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(() => generateWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   // Dependent Variables
@@ -58,10 +59,20 @@ export default function App() {
   }, [guessedLetters, currentWord, lastFareWellText]);
 
   // Callback Functions
+  function generateWord() {
+    return words[Math.floor(Math.random() * words.length)];
+  }
+
   function addGuessedLetter(letter) {
     setGuessedLetters((prevLetters) =>
       prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter]
     );
+  }
+
+  function startNewGame() {
+    setCurrentWord(generateWord());
+    setGuessedLetters([]);
+    setLastFareWellText("");
   }
 
   // Elements
@@ -86,6 +97,7 @@ export default function App() {
         key={index}
         letter={letter}
         show={guessedLetters.includes(letter)}
+        isGameLost={isGameLost && !(guessedLetters.includes(letter))}
       />
     );
   });
@@ -134,7 +146,14 @@ export default function App() {
 
       <section className="keyboard-container">{keyboardButtons}</section>
 
-      {isGameOver && <button className="new-game-btn">New Game</button>}
+      {isGameOver &&
+        <button
+          className="new-game-btn"
+          onClick={startNewGame}
+        >
+          New Game
+        </button>
+      }
     </main>
   );
 }
