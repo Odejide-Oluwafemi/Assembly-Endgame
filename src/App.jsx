@@ -8,12 +8,13 @@ import LanguageChip from "./components/LanguageChip";
 import LetterBlock from "./components/LetterBlock";
 import KeyboardButton from "./components/KeyboardButton";
 import clsx from "clsx";
+import Confetti from "react-confetti";
 
 export default function App() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   // State Variables
-  const [currentWord, setCurrentWord] = useState(() => generateWord());
+  const [currentWord, setCurrentWord] = useState("react");
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   // Dependent Variables
@@ -125,6 +126,7 @@ export default function App() {
 
   return (
     <main>
+      {isGameWon && <Confetti/>}
       <Header />
 
       <section className={statusSectionClassNames}>
