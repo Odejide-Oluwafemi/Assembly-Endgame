@@ -1,7 +1,7 @@
-export default function LetterBlock({letter}) {
+export default function LetterBlock({letter, show}) {
   return(
     <span className="letter-block">
-      {letter}
+      {show && letter}
     </span>
   );
 }

@@ -1,5 +1,12 @@
-export default function LanguageChip({name, backgroundColor, textColor}) {
+import clsx from "clsx";
+
+export default function LanguageChip({name, backgroundColor, textColor, classNames}) {
   return (
-    <span className="language-chip" style={{backgroundColor: backgroundColor, color: textColor}}>{name}</span>
+    <span
+      className={classNames}
+      style={{backgroundColor: backgroundColor, color: textColor}}
+    >
+      {name}
+    </span>
   );
 }
